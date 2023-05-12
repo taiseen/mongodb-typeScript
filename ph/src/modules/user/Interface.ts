@@ -1,3 +1,6 @@
+import { HydratedDocument, Model } from "mongoose";
+
+
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 // Step 1 ==> Create Interface
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
@@ -21,7 +24,13 @@ export interface IUser {
 }
 
 
-// for creating custom instance method()
+// for creating custom [instance] method()
 export interface IFullName {
     getFullName(): string;
+}
+
+
+// for creating custom [static] function()
+export interface UserModel extends Model<IUser, {}, IFullName> {
+    getUsersByRole(): Promise<HydratedDocument<IUser, IFullName>>;
 }

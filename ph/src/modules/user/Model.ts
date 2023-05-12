@@ -1,9 +1,9 @@
-import { Model, Schema, model } from "mongoose";
-import { IFullName, IUser } from "./Interface";
+import { IFullName, IUser, UserModel } from "./Interface";
+import { Schema, model } from "mongoose";
 
 
 // [type] creating for custom instance method()
-type UserFullName = Model<IUser, {}, IFullName>;
+// type UserFullName = Model<IUser, {}, IFullName>;
 
 
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
@@ -11,7 +11,8 @@ type UserFullName = Model<IUser, {}, IFullName>;
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 
 
-const UserSchema = new Schema<IUser, UserFullName, IFullName>({
+// const UserSchema = new Schema<IUser, UserFullName, IFullName>({
+const UserSchema = new Schema<IUser, UserModel, IFullName>({
     id: { type: String, required: true, unique: true },
     role: { type: String, required: true, enum: ["student", "teacher"] },
     password: { type: String, required: true },
@@ -29,16 +30,26 @@ const UserSchema = new Schema<IUser, UserFullName, IFullName>({
 });
 
 
-// create custom instance method()
+// create custom [instance] method()
 UserSchema.method('getFullName', function getFullName() {
     return this.name.fastName + ' ' + this.name.lastName;
 });
+
+
+// create custom [static] function()
+UserSchema.static('getUsersByRole', async function getUsersByRole() {
+    const doNotSendTheseProperties = { __v: 0, _id: 0, password: 0 };
+    return await this.find({ role: 'teacher' }).select(doNotSendTheseProperties);
+});
+
 
 
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 // Step 3 ==> Create Model
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 
-const UserModel = model<IUser, UserFullName>('User', UserSchema);
+
+// const UserModel = model<IUser, UserFullName>('User', UserSchema);
+const UserModel = model<IUser, UserModel>('User', UserSchema);
 
 export default UserModel;

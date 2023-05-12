@@ -1,9 +1,11 @@
-import { dbCreateUser, dbGetAllUser, dbGetUserById } from "./Service";
+import { dbCreateUser, dbGetAllUser, dbGetUserById, dbGetUsersByRole } from "./Service";
 import { Request, Response } from "express";
 
+
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
-// Step 6 ==> Create Controller
+// Step 5 ==> Create Controller
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
+
 
 // #################################################################################
 // #################################################################################
@@ -47,3 +49,13 @@ export const getUserById = async (req: Request, res: Response) => {
 // #################################################################################
 // #################################################################################
 
+export const getUsersByRole = async (req: Request, res: Response) => {
+
+    const users = await dbGetUsersByRole();
+
+    res.status(200).json({ data: users });
+}
+
+// #################################################################################
+// #################################################################################
+// #################################################################################

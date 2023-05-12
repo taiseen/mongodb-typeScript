@@ -1,15 +1,17 @@
-import { createUser, getAllUser, getUserById } from './Controller';
+import { createUser, getAllUser, getUserById, getUsersByRole } from './Controller';
 import express from 'express';
 
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
-// Step 5 ==> Create Route
+// Step 6 ==> Create Route
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 
 const route = express.Router();
 
+
 route.get('/', getAllUser);
+route.get('/teacher', getUsersByRole);
 route.get('/:userId', getUserById);
-route.post('/create-user', createUser);
+route.post('/create', createUser);
 
 
 export default route;

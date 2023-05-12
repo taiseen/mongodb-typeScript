@@ -4,8 +4,8 @@
 * Step 2 ==> Create Schema
 * Step 3 ==> Create Model
 * Step 4 ==> Create Service ==> for query in database by help of Model
-* Step 5 ==> Create Route
-* Step 6 ==> Create Controller
+* Step 5 ==> Create Controller
+* Step 6 ==> Create Route
 
 # 
 * Router ==> Controller ==> Service ==> Model

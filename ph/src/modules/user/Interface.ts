@@ -2,13 +2,14 @@
 // Step 1 ==> Create Interface
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 
-interface IUser {
+
+export interface IUser {
     id: string;
     role: 'student' | 'teacher';
     password: string;
     name: {
         fastName: string;
-        laseName: string;
+        lastName: string;
     };
     gender: "male" | "female";
     dateOfBirth?: string;           // 🟢 optional
@@ -19,4 +20,8 @@ interface IUser {
     permanentAddress: string;
 }
 
-export default IUser;
+
+// for creating custom instance method()
+export interface IFullName {
+    getFullName(): string;
+}

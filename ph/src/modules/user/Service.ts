@@ -1,4 +1,4 @@
-import IUser from "./Interface";
+import { IUser } from "./Interface";
 import UserModel from "./Model";
 
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
@@ -18,6 +18,9 @@ export const dbCreateUser = async (userData: IUser): Promise<IUser> => {
     const userInfo = new UserModel(userData);
 
     await userInfo.save(); // user info saved in to database from here...
+
+    // our creating ==> custom instance method() call...
+    console.log(userInfo.getFullName());
 
     return userInfo;
 }

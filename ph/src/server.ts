@@ -7,6 +7,7 @@ import cors from "cors";
 
 const app: Application = express();
 
+
 app.use(cors()); // use cors
 app.use(express.json()); // parsing data...
 app.use(express.urlencoded({ extended: true }));
@@ -24,6 +25,6 @@ app.get('/', welcomeInfo);
 
 const port: number = 5000;
 app.listen(port, () => {
-    console.log(`Server run at port ${port}`);
-    mongoDB()
+    console.log(`Server Running Port ==> ${port}`);
+    mongoDB();
 });

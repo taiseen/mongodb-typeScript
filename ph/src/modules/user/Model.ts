@@ -1,17 +1,23 @@
-import { Schema, model } from "mongoose";
-import IUser from "./Interface";
+import { Model, Schema, model } from "mongoose";
+import { IFullName, IUser } from "./Interface";
+
+
+// [type] creating for custom instance method()
+type UserFullName = Model<IUser, {}, IFullName>;
+
 
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 // Step 2 ==> Create Schema
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 
-const UserSchema = new Schema<IUser>({
+
+const UserSchema = new Schema<IUser, UserFullName, IFullName>({
     id: { type: String, required: true, unique: true },
     role: { type: String, required: true, enum: ["student", "teacher"] },
     password: { type: String, required: true },
     name: {
         fastName: { type: String, required: true },
-        laseName: { type: String, required: true },
+        lastName: { type: String, required: true },
     },
     gender: { type: String, required: true, enum: ["male", "female"], default: "male" },
     dateOfBirth: { type: String },                      // 🟢 optional
@@ -23,10 +29,16 @@ const UserSchema = new Schema<IUser>({
 });
 
 
+// create custom instance method()
+UserSchema.method('getFullName', function getFullName() {
+    return this.name.fastName + ' ' + this.name.lastName;
+});
+
+
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 // Step 3 ==> Create Model
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 
-const UserModel = model<IUser>('User', UserSchema);
+const UserModel = model<IUser, UserFullName>('User', UserSchema);
 
 export default UserModel;

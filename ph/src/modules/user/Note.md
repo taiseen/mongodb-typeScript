@@ -8,8 +8,8 @@
 * Step 6 ==> Create Controller
 
 # 
-
 * Router ==> Controller ==> Service ==> Model
+# 
 
 [JSON Formatter](https://jsonformatter.curiousconcept.com)
 ```js
@@ -19,7 +19,7 @@
    "password":"000",
    "name":{
       "fastName":"000",
-      "laseName":"000"
+      "lastName":"000"
    },
    "gender":"000",
    "email":"000",

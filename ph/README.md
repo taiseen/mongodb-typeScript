@@ -1,6 +1,6 @@
 > 12 - May - 2023 
 
-# MongoDB with TypeScript
+# Programming Hero 
 
 * npm init -y
 * yarn add -D typescript
@@ -17,7 +17,6 @@
 #### at - package.json
 ```js
 "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "start": "nodemon",
 }
 ```

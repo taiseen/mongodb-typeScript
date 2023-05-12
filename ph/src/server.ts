@@ -1,24 +1,29 @@
-import express, { Application, Request, Response } from "express";
+import express, { Application } from "express";
+import userRoute from "./modules/user/Routes";
+import welcomeInfo from "./utils/welcomeInfo.ts";
 import mongoDB from "./connection/mongoDB.ts";
 import cors from "cors";
 
 
 const app: Application = express();
 
-
 app.use(cors()); // use cors
 app.use(express.json()); // parsing data...
 app.use(express.urlencoded({ extended: true }));
 
 
+// share this variable within whole application...
+app.locals.userApiUrl = '/api/user'; // url endpoint
 
-const welcome = (req: Request, res: Response) => res.send('Hello Taiseen with TypeScript...!');
-app.get('/', welcome);
 
+app.use(app.locals.userApiUrl, userRoute);
+
+
+app.get('/', welcomeInfo);
 
 
 const port: number = 5000;
 app.listen(port, () => {
-    console.log(`app start on port ${port}`);
-    mongoDB();
-})
+    console.log(`Server run at port ${port}`);
+    mongoDB()
+});

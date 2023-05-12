@@ -2,3 +2,7 @@
 
 # MongoDB with TypeScript
 
+## Only server side implementation learning...
+
+
+* > ph ==> Programming Hero

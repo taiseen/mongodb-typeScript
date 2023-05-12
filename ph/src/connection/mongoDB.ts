@@ -1,11 +1,14 @@
 import mongoose from "mongoose";
 
+
 const mongoDB = async () => {
+
+    const url = 'mongodb://localhost:27017/testing';
 
     try {
         // Remove console warning...
         mongoose.set('strictQuery', true);
-        await mongoose.connect('mongodb://localhost:27017/testing');
+        await mongoose.connect(url);
 
         console.log("Connected To MongoDB ==> OK ✅");
     } catch (error) {

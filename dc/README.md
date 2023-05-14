@@ -10,7 +10,9 @@
 * yarn add -D yarn-run-all
 * yarn add -D @types/express
 * yarn add -D @types/http-errors
+* yarn add dotenv
 * yarn add express
+* yarn add mongoose
 * yarn add http-errors
 
 > npx tsc --init 

@@ -1,30 +1,23 @@
-import express, { ErrorRequestHandler } from 'express';
-import httpErrors from 'http-errors';
+import { customErrorMessage, errorHandler } from './middleware/errorHandler';
+import { PORT } from './config';
+import dbConnection from './connection';
+import testRoute from './routes/test';
+import express from 'express';
 
 
 const app = express();
 
 
-app.listen(9000, () => { console.log('✅ TS Server Running...') });
+app.listen(PORT, () => dbConnection());
 
 app.get('/', (req, res) => res.json({ sms: 'Hello form TS server...' }));
 
+app.use('/test', testRoute);
 
 
 
 // for url routing...
-// 1st create oru custom error handling system... 
+// 1st create our custom error message + handling system... 
 // and use it as a middleware...
-const customErrorHandler = () => { throw httpErrors(404, 'Route Not Found...') };
-app.use(customErrorHandler);
-
-
-const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
-
-    if (err.headersSend) return next(err);
-
-    res.status(err.statusCode || 500)
-        .json({ message: err.message || 'Unknown Error' })
-}
+app.use(customErrorMessage);
 app.use(errorHandler);
-

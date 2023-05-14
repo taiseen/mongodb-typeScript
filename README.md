@@ -5,4 +5,6 @@
 ## Only server side implementation learning...
 
 
-* > ph ==> Programming Hero
+* > ph ==> Programming Hero (modular pattern)
+* > dc ==> Do Some Coding   (mvc pattern)
+

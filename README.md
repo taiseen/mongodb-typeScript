@@ -7,4 +7,5 @@
 
 * > ph ==> Programming Hero (modular pattern)
 * > dc ==> Do Some Coding   (mvc pattern)
+* > assignment-2 ==> PH (modular pattern)
 
